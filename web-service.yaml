@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-public-access
+spec:
+  type: LoadBalancer # Instructs AWS to provision an Elastic Load Balancer
+  selector:
+    app: secure-web # Matches the exact label on our deployment pods
+  ports:
+    - protocol: TCP
+      port: 80        # The port open to the public internet on the Load Balancer
+      targetPort: 80  # The port traffic is sent to inside the container
